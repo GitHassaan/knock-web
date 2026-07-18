@@ -1,0 +1,8 @@
+{
+  "name": "knock-web-root",
+  "private": true,
+  "workspaces": [
+    "web",
+    "services/api"
+  ]
+}

@@ -1,2 +1,1 @@
-# knock-web
-knock web
+Update README: added shop-flow instructions
