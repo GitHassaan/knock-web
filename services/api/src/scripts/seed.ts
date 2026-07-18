@@ -1,7 +1,8 @@
-// Add product text index creation in seed to improve search
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import Product from '../models/Product'
+import User from '../models/User'
+import bcrypt from 'bcryptjs'
 
 dotenv.config()
 
@@ -21,6 +22,13 @@ async function seed() {
   await Product.insertMany(products)
   await Product.collection.createIndex({ title: 'text', description: 'text' })
   console.log('Seeded products and text index')
+
+  // Seed users
+  await User.deleteMany({})
+  const pw = await bcrypt.hash('Password123!', 10)
+  await User.create([{ name: 'Admin User', email: 'admin@example.com', passwordHash: pw, role: 'admin' }, { name: 'Rider User', email: 'rider@example.com', passwordHash: pw, role: 'rider' }, { name: 'Demo Customer', email: 'demo@example.com', passwordHash: pw, role: 'customer' }])
+  console.log('Seeded users: admin@example.com / rider@example.com / demo@example.com (Password123!)')
+
   process.exit(0)
 }
 
