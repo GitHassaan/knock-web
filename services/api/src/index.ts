@@ -1,3 +1,4 @@
+// update src/index.ts to register routes and attach io to app
 import express from 'express'
 import http from 'http'
 import { Server } from 'socket.io'
@@ -5,6 +6,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import registerRoutes from './routes'
 
 dotenv.config()
 
@@ -23,11 +25,10 @@ async function start() {
   app.use(express.json())
   app.use(cookieParser())
 
-  // Basic routes
-  app.get('/api/health', (req, res) => res.json({ ok: true }))
+  // Attach io to app so routes can emit
+  app.set('io', io)
 
-  // Mount minimal routers (placeholders)
-  // import and use routers when ready
+  registerRoutes(app)
 
   io.on('connection', (socket) => {
     console.log('socket connected', socket.id)
