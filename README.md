@@ -1,1 +1,1 @@
-Update README: added shop-flow instructions
+Update README: delivery request endpoints and client usage
