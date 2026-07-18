@@ -1,0 +1,13 @@
+/* globals.css - minimal styles and Tailwind import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --glass-bg: rgba(255,255,255,0.6);
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.45));
+  backdrop-filter: blur(8px) saturate(120%);
+}
